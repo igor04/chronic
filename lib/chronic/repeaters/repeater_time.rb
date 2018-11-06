@@ -87,11 +87,11 @@ module Chronic
         catch :done do
           if pointer == :future
             if @type.ambiguous?
-              [midnight + @type.time + offset_fix, midnight + half_day + @type.time + offset_fix, tomorrow_midnight + @type.time].each do |t|
+              [midnight + @type.time, midnight + half_day + @type.time + offset_fix, tomorrow_midnight + @type.time].each do |t|
                 (@current_time = t; throw :done) if t >= @now
               end
             else
-              [midnight + @type.time + offset_fix, tomorrow_midnight + @type.time].each do |t|
+              [midnight + @type.time, tomorrow_midnight + @type.time].each do |t|
                 (@current_time = t; throw :done) if t >= @now
               end
             end
